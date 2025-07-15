@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Mail, Send } from "lucide-react";
 
-const ContactSection = () => {
+const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,7 +28,13 @@ const ContactSection = () => {
     setStatus({ loading: true, success: false, error: "" });
 
     try {
-      const response = await fetch(import.meta.env.VITE_BACKEND_URL, {
+      const apiUrl = import.meta.env.VITE_REACT_APP_API_URL;
+      
+      if (!apiUrl) {
+        throw new Error("API URL is not configured");
+      }
+
+      const response = await fetch(apiUrl, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
