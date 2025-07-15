@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Mail, Send } from "lucide-react";
 
-const ContactSection: React.FC = () => {
+const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -28,7 +28,7 @@ const ContactSection: React.FC = () => {
     setStatus({ loading: true, success: false, error: "" });
 
     try {
-      const response = await fetch("https://for-testing-backend.vercel.app/api/contact", {
+      const response = await fetch(import.meta.env.VITE_BACKEND_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -95,7 +95,6 @@ const ContactSection: React.FC = () => {
                     <p className="text-gray-600">jagadish.paul@yahoo.com</p>
                   </div>
                 </div>
-                
               </div>
             </div>
           </div>
